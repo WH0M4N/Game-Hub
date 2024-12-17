@@ -1,15 +1,17 @@
 import { HStack, Image, List, ListItem, Spinner, Text } from "@chakra-ui/react";
 import useGenre from "../hooks/useGenre";
 import getCroppedImage from "../services/url-image";
+import { BsReverseLayoutTextSidebarReverse } from "react-icons/bs";
 
 const GenreList = () => {
   const { data, error, isLoading } = useGenre();
+
+  if (error) return null;
 
   if (isLoading) return <Spinner marginTop={5} />;
 
   return (
     <List>
-      {error && <p>{error}</p>}
       {data.map((genre) => (
         <ListItem key={genre.id} paddingY="5px">
           <HStack>

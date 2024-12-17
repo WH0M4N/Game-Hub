@@ -19,7 +19,7 @@ const App = () => {
         <NavBar />
       </GridItem>
       <Show above="lg">
-        <GridItem area="aside" paddingX={5}>
+        <GridItem area="aside" paddingX={5} marginTop={2}>
           <GenreList />
         </GridItem>
       </Show>

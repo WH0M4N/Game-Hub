@@ -2,8 +2,12 @@ import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GamesGrid from "./components/GamesGrid";
 import GenreList from "./components/GenreList";
+import { Genre } from "./hooks/useGenre";
+import { useState } from "react";
 
 const App = () => {
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+
   return (
     <Grid
       templateAreas={{
@@ -20,14 +24,17 @@ const App = () => {
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" paddingX={5} marginTop={2}>
-          <GenreList />
+          <GenreList selectedGenre={(genre) => setSelectedGenre(genre)} />
         </GridItem>
       </Show>
       <GridItem area="main">
-        <GamesGrid />
+        <GamesGrid selectedGenre={selectedGenre} />
       </GridItem>
     </Grid>
   );
 };
 
 export default App;
+function usestate<T>(): [any, any] {
+  throw new Error("Function not implemented.");
+}

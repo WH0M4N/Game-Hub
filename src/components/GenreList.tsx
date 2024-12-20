@@ -6,8 +6,6 @@ import {
   List,
   ListItem,
   Spinner,
-  useColorMode,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import useGenre, { Genre } from "../hooks/useGenre";
 import getCroppedImage from "../services/url-image";

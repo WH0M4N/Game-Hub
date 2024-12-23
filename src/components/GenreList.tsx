@@ -1,5 +1,6 @@
 import {
   Button,
+  Heading,
   Highlight,
   HStack,
   Image,
@@ -23,40 +24,48 @@ const GenreList = ({ selectedGenre, highlightedGenre }: Props) => {
   if (isLoading) return <Spinner marginTop={5} />;
 
   return (
-    <List>
-      {data.map((genre) => (
-        <ListItem key={genre.id} paddingY="5px">
-          <HStack>
-            <Image
-              boxSize="32px"
-              borderRadius={8}
-              src={getCroppedImage(genre.image_background)}
-            />
-            <Button
-              fontSize="lg"
-              variant="unstyled"
-              onClick={() => selectedGenre(genre)}
-            >
-              {genre.id === highlightedGenre?.id ? (
-                <Highlight
-                  query={genre.name}
-                  styles={{
-                    px: "7px",
-                    py: "3px",
-                    bg: "gray.400",
-                    borderRadius: "10px",
-                  }}
-                >
-                  {genre.name}
-                </Highlight>
-              ) : (
-                genre.name
-              )}
-            </Button>
-          </HStack>
-        </ListItem>
-      ))}
-    </List>
+    <>
+      <Heading fontSize="2xl" marginBottom={3}>
+        Genres
+      </Heading>
+      <List>
+        {data.map((genre) => (
+          <ListItem key={genre.id} paddingY="5px">
+            <HStack>
+              <Image
+                boxSize="32px"
+                borderRadius={8}
+                objectFit="cover"
+                src={getCroppedImage(genre.image_background)}
+              />
+              <Button
+                fontSize="lg"
+                variant="unstyled"
+                whiteSpace="normal"
+                textAlign="left"
+                onClick={() => selectedGenre(genre)}
+              >
+                {genre.id === highlightedGenre?.id ? (
+                  <Highlight
+                    query={genre.name}
+                    styles={{
+                      px: "7px",
+                      py: "3px",
+                      bg: "gray.400",
+                      borderRadius: "10px",
+                    }}
+                  >
+                    {genre.name}
+                  </Highlight>
+                ) : (
+                  genre.name
+                )}
+              </Button>
+            </HStack>
+          </ListItem>
+        ))}
+      </List>
+    </>
   );
 };
 

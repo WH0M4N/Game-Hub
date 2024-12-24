@@ -14,6 +14,8 @@ const Emojies = ({ rating }: Props) => {
     5: { src: bullsEye, alt: "exeptional", boxSize: "35px" },
   };
 
+  if (rating < 3) return null;
+
   return <Image {...emojiMap[rating]} boxSize="25px" marginTop={1} />;
 };
 

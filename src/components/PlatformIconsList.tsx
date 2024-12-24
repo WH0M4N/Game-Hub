@@ -14,7 +14,7 @@ import { BsGlobe } from "react-icons/bs";
 import { IconType } from "react-icons";
 
 interface Props {
-  platforms: Platform[];
+  platforms?: Platform[];
 }
 
 const PlatformIconsList = ({ platforms }: Props) => {
@@ -32,7 +32,7 @@ const PlatformIconsList = ({ platforms }: Props) => {
 
   return (
     <HStack marginY={3}>
-      {platforms.map((platform) => (
+      {platforms?.map((platform) => (
         <Icon as={iconMap[platform.slug]} color="gray.500" key={platform.id} />
       ))}
     </HStack>

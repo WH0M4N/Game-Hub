@@ -13,15 +13,15 @@ import getCroppedImage from "../services/url-image";
 
 interface Props {
   selectedGenre: (genre: Genre) => void;
-  highlightedGenre: Genre | null;
+  highlightedGenreId?: number;
 }
 
-const GenreList = ({ selectedGenre, highlightedGenre }: Props) => {
+const GenreList = ({ selectedGenre, highlightedGenreId }: Props) => {
   const { data, error, isLoading } = useGenre();
 
   // if (error) return null;
 
-  // if (isLoading) return <Spinner marginTop={5} />;
+  if (isLoading) return <Spinner marginTop={5} />;
 
   return (
     <>
@@ -45,7 +45,7 @@ const GenreList = ({ selectedGenre, highlightedGenre }: Props) => {
                 textAlign="left"
                 onClick={() => selectedGenre(genre)}
               >
-                {genre.id === highlightedGenre?.id ? (
+                {genre.id === highlightedGenreId ? (
                   <Highlight
                     query={genre.name}
                     styles={{

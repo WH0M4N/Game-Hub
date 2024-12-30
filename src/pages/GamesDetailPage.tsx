@@ -3,6 +3,7 @@ import useGameDetails from "../hooks/useGameDetails";
 import { Box, Button, Heading, Spinner, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import GameAttributesList from "../components/GameAttributesList";
+import GameTrailer from "../components/GameTrailer";
 
 const GamesDetailPage = () => {
   const { slug } = useParams();
@@ -18,10 +19,12 @@ const GamesDetailPage = () => {
     ? game?.description_raw
     : game?.description_raw.slice(0, limit);
 
+  if (game === undefined) return null;
+
   return (
     <>
       <Box padding={5}>
-        <Heading>{game?.name}</Heading>
+        <Heading>{game.name}</Heading>
         <Text>
           {isExpanded ? `${summary}  ` : `${summary}...  `}
           <Button
@@ -33,7 +36,8 @@ const GamesDetailPage = () => {
             {isExpanded ? "Show less" : "Show more"}
           </Button>
         </Text>
-        <GameAttributesList game={game!} />
+        <GameAttributesList game={game} />
+        <GameTrailer gameId={game.id} />
       </Box>
     </>
   );

@@ -1,6 +1,14 @@
 import { useParams } from "react-router-dom";
 import useGameDetails from "../hooks/useGameDetails";
-import { Box, Button, Heading, Spinner, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  GridItem,
+  Heading,
+  SimpleGrid,
+  Spinner,
+  Text,
+} from "@chakra-ui/react";
 import { useState } from "react";
 import GameAttributesList from "../components/GameAttributesList";
 import GameTrailer from "../components/GameTrailer";
@@ -24,23 +32,33 @@ const GamesDetailPage = () => {
 
   return (
     <>
-      <Box padding={5}>
-        <Heading>{game.name}</Heading>
-        <Text>
-          {isExpanded ? `${summary}  ` : `${summary}...  `}
-          <Button
-            size="xs"
-            fontWeight="bold"
-            colorScheme="yellow"
-            onClick={() => setExpanded(!isExpanded)}
-          >
-            {isExpanded ? "Show less" : "Show more"}
-          </Button>
-        </Text>
-        <GameAttributesList game={game} />
-        <GameTrailer gameId={game.id} />
-        <GameScreenshot gameId={game.id} />
-      </Box>
+      <SimpleGrid columns={{ base: 1, md: 2 }}>
+        <GridItem>
+          <Box padding={5}>
+            <Heading>{game.name}</Heading>
+            <Text>
+              {isExpanded ? `${summary}  ` : `${summary}...  `}
+              <Button
+                size="xs"
+                fontWeight="bold"
+                colorScheme="yellow"
+                onClick={() => setExpanded(!isExpanded)}
+              >
+                {isExpanded ? "Show less" : "Show more"}
+              </Button>
+            </Text>
+          </Box>
+          <GameAttributesList game={game} />
+        </GridItem>
+        <GridItem>
+          <Box padding={5}>
+            <GameTrailer gameId={game.id} />
+          </Box>
+          <Box padding={5}>
+            <GameScreenshot gameId={game.id} />
+          </Box>
+        </GridItem>
+      </SimpleGrid>
     </>
   );
 };
